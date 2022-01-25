@@ -12,8 +12,14 @@ export default function ScorePage() {
     <div className={style.layoutGrid}>
       <Head></Head>
       <Header />
-      <LeftBar />
-      <TableScore />
+      <div className={style.row}>
+        <div className={style.navigation}>
+          <LeftBar />
+        </div>
+        <div className={style.table}>
+          <TableScore />
+        </div>
+      </div>
     </div>
   );
 }

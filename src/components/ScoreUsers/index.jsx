@@ -24,6 +24,27 @@ export function TableScore() {
                 <AiFillStar />
               </td>
             </tr>
+            <tr>
+              <td>Icaro Vieira</td>
+              <td>5</td>
+              <td>
+                <AiFillStar />
+              </td>
+            </tr>
+            <tr>
+              <td>Icaro Vieira</td>
+              <td>5</td>
+              <td>
+                <AiFillStar />
+              </td>
+            </tr>
+            <tr>
+              <td>Icaro Vieira</td>
+              <td>5</td>
+              <td>
+                <AiFillStar />
+              </td>
+            </tr>
           </tbody>
         </table>
       </main>

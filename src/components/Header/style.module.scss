@@ -1,0 +1,38 @@
+.headerContainer {
+  grid-area: H;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+  height: 80px;
+  border-bottom: 1px solid var(--gray-300);
+  div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-roboto);
+    color: var(--gray-600);
+    svg {
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  nav {
+    ul {
+      list-style: none;
+      margin-right: 20px;
+      li {
+        display: inline-block;
+        a {
+          padding: 5px;
+          color: var(--gray-600);
+          &:hover {
+            text-decoration: underline;
+            color: var(--black);
+          }
+        }
+      }
+    }
+  }
+}

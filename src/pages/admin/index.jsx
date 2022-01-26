@@ -23,3 +23,9 @@ export default function ScorePage() {
     </div>
   );
 }
+
+export function getServerSideProps(ctx) {
+  return {
+    props: {},
+  };
+}

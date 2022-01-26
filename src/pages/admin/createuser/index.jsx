@@ -7,13 +7,18 @@ import {
   AiFillEyeInvisible,
   AiOutlineUserAdd,
 } from "react-icons/ai";
+import Head from "next/head";
 import { RiLockPasswordFill, RiUserAddLine } from "react-icons/ri";
 import { MdAlternateEmail } from "react-icons/md";
 
 import styles from "./style.module.scss";
 
-import { Input } from "../../components/InputComponent";
-import Head from "next/head";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { api } from "../../api/hello";
+import { Input } from "../../../components/InputComponent";
+import { resolveHref } from "next/dist/shared/lib/router/router";
 
 export default function CreateUser() {
   const formRef = useRef();
@@ -22,8 +27,12 @@ export default function CreateUser() {
     if (inputType === "password") setInputType("text");
     if (inputType === "text") setInputType("password");
   }
-  function handleSubmit(data) {
-    console.log(data);
+  async function handleSubmit(data) {
+    const response = await api.post("user/register", data);
+    console.log(response);
+    if (response.status === 201) toast.success("usuario criado com sucesso");
+    if (response.status >= 400)
+      toast.error("tivemos um problema por favor tente novamente");
   }
 
   return (
@@ -38,21 +47,17 @@ export default function CreateUser() {
         </div>
         <main>
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <div>
+            {/* <div>
               <AiOutlineUserAdd />
               <Input name="user.name" type="text" placeholder="Email" />
-            </div>
+            </div> */}
             <div>
               <MdAlternateEmail />
-              <Input name="user.email" type="email" placeholder="Email" />
+              <Input name="email" type="email" placeholder="Email" />
             </div>
             <div>
               <RiLockPasswordFill />
-              <Input
-                name="user.password"
-                type={inputType}
-                placeholder="Password"
-              />
+              <Input name="password" type={inputType} placeholder="Password" />
               {inputType === "password" ? (
                 <AiFillEye onClick={handleSateInput} className={styles.eye} />
               ) : (
@@ -68,6 +73,7 @@ export default function CreateUser() {
           </Form>
         </main>
       </div>
+      <ToastContainer />
     </div>
   );
 }

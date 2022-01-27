@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-import { LeftBar } from "../../components/LeftBar";
+import { LeftBar } from "./components/LeftBar";
 import { Header } from "../../components/Header";
 import { TableScore } from "../../components/ScoreUsers";
 
@@ -17,6 +17,7 @@ export default function ScorePage() {
           <LeftBar />
         </div>
         <div className={style.table}>
+          <h2>Score Players</h2>
           <TableScore />
         </div>
       </div>

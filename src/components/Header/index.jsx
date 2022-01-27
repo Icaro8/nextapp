@@ -7,7 +7,7 @@ import styles from "./style.module.scss";
 
 export function Header() {
   return (
-    <div className={styles.headerContainer}>
+    <header className={styles.headerContainer}>
       <div>
         <div>
           <FaFantasyFlightGames />
@@ -30,6 +30,6 @@ export function Header() {
           </li>
         </ul>
       </nav>
-    </div>
+    </header>
   );
 }

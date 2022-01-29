@@ -53,15 +53,25 @@ export default function CreateUser() {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <div className={styles.input}>
               <AiOutlineUserAdd />
-              <Input name="user.name" type="text" placeholder="Email" />
+              <Input
+                name="user.name"
+                type="text"
+                placeholder="Email"
+                required
+              />
             </div>
             <div className={styles.input}>
               <MdAlternateEmail />
-              <Input name="email" type="email" placeholder="Email" />
+              <Input name="email" type="email" placeholder="Email" required />
             </div>
             <div className={styles.input}>
               <RiLockPasswordFill />
-              <Input name="password" type={inputType} placeholder="Password" />
+              <Input
+                name="password"
+                type={inputType}
+                placeholder="Password"
+                required
+              />
               {inputType === "password" ? (
                 <AiFillEye onClick={handleSateInput} className={styles.eye} />
               ) : (

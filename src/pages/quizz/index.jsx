@@ -80,13 +80,13 @@ export default function QuizUser({ list: questions }) {
   );
 }
 
-export async function getServerSideProps(ctx) {
-  const data = await fetch("http://e906-186-232-143-24.ngrok.io/questions");
-  const response = await data.json();
-  const questions = response;
-  return {
-    props: {
-      list: questions,
-    },
-  };
-}
+// export async function getServerSideProps(ctx) {
+//   const data = await fetch("http://e906-186-232-143-24.ngrok.io/questions");
+//   const response = await data.json();
+//   const questions = response;
+//   return {
+//     props: {
+//       list: questions,
+//     },
+//   };
+// }

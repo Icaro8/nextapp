@@ -1,0 +1,94 @@
+.layout {
+  width: 100%;
+  height: 100%;
+
+  .Container {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .card {
+      border: 1px solid var(--blue-500);
+      border-radius: 10px;
+      display: flex;
+      width: 800px;
+      height: 400px;
+      align-items: center;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      background-color: var(--gray-100);
+      box-shadow: 0 0 5px #171923;
+      .contentCard {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .title {
+          font-size: 14px;
+          text-align: left;
+          width: 50%;
+          text-align: center;
+        }
+        .response {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 50%;
+          gap: 10px;
+          overflow-y: auto;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          button {
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            width: 350px;
+            color: var(--gray-800);
+            font-weight: 500;
+            font-size: 14px;
+            &:hover {
+              background-color: var(--green-200);
+              transition: linear 0.2s;
+            }
+          }
+        }
+      }
+      .finish {
+        text-transform: uppercase;
+        font-family: "Roboto", sans-serif;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        button {
+          border: none;
+          background-color: var(--blue-600);
+          padding: 10px;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--gray-50);
+          font-weight: bold;
+          p {
+            font-size: 16px;
+          }
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+          &:hover {
+            box-shadow: 0 0 0 2px var(--blue-600);
+            color: var(--blue-600);
+            background-color: var(--gray-300);
+            font-weight: bold;
+            transition: linear 0.4s;
+          }
+        }
+      }
+    }
+  }
+}

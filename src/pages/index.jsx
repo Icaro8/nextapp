@@ -1,18 +1,23 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Head from "next/head";
+import { Form } from "@unform/web";
+import { setCookie, parseCookies } from "nookies";
+import jwt_decode from "jwt_decode";
+import { useRouter } from "next/router";
+
+import { ToastContainer, toast } from "react-toastify";
 
 import { AiFillEye, AiFillEyeInvisible, AiOutlineUser } from "react-icons/ai";
 
-import { Form } from "@unform/web";
-
 import styles from "../styles/Home.module.scss";
-
+import "react-toastify/dist/ReactToastify.css";
+import { api } from "./api/hello";
 import { Input } from "../components/InputComponent";
 
 export default function Home() {
+  const router = useRouter();
   const formRef = useRef();
   const [inputType, setInputType] = useState("password");
-
   function handleTypeInputText() {
     setInputType("text");
   }
@@ -21,10 +26,26 @@ export default function Home() {
   }
 
   async function handleSubmit(data, { reset }) {
-    console.log(data);
+    const response = await api.post("user/login", data);
 
+    if (response.status === 200) {
+      toast.success("Logado com sucesso");
+      setCookie("quizz", data, {
+        maxAge: 60 * 60 * 24, //one day
+      });
+      const cookie = parseCookies();
+      const user = jwt_decode(cookie);
+
+      if (user) {
+        router.push("/quizz");
+      }
+    }
+    if (response.status >= 400) {
+      toast.error("Tivemos um erro verifque seu usuario ou senha");
+    }
     reset();
   }
+
   return (
     <div className={styles.ContainerContent}>
       <Head>
@@ -38,12 +59,14 @@ export default function Home() {
         <h2>Login</h2>
         <main>
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <Input name="user.email" type="text" placeholder="email" />
+            <Input name="user.email" type="text" placeholder="email" required />
             <div>
               <Input
                 name="user.password"
                 type={inputType}
                 placeholder="password"
+                required
+                minlength="4"
               />
               {inputType === "password" ? (
                 <AiFillEye onClick={handleTypeInputText} />
@@ -52,11 +75,12 @@ export default function Home() {
               )}
             </div>
             <div>
-              <button type="submit">Submit</button>
+              <button type="submit">Login</button>
             </div>
           </Form>
         </main>
       </div>
+      <ToastContainer />
     </div>
   );
 }
